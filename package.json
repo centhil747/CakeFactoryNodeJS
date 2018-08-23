@@ -7,14 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/centhil747/CakeFactoryNodeJS.git"
-  },
   "author": "Centhil Valliappan",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/centhil747/CakeFactoryNodeJS/issues"
-  },
-  "homepage": "https://github.com/centhil747/CakeFactoryNodeJS#readme"
+  "license": "ISC"
 }
