@@ -8,28 +8,32 @@ const connect = mongoose.connect(url);
 connect.then((db) => {
 
     console.log('Connected correctly to server');
-
-    var newDish = Dishes({
-        name: 'Uthappizza',
-        description: 'test'
+    Dishes.create({
+        name: 'te',
+        description: 'Test'
+    })
+    .then((dish) => {
+        console.log(dish);
+        
+        return Dishes.findByIdAndUpdate(dish._id, {
+                $set: {
+                    description: 'Updated Test'
+                }
+            }, {
+                new: true
+            })
+            .exec();
+    })
+    .then((dish) => {
+        console.log(dish);
+        //return db.collection('dishes').remove(); issue -> as need a lower version in package.json
+        return Dishes.remove({});
+    })
+    .then(() => {
+        //return db.close(); issue -> as need a lower version in package.json
+        return mongoose.disconnect()       
+    })
+    .catch((err) => {
+        console.log(err);
     });
-
-    newDish.save()
-        .then((dish) => {
-            console.log(dish);
-
-            return Dishes.find({});
-        })
-        .then((dishes) => {
-            console.log(dishes);
-
-            return Dishes.remove({});
-        })
-        .then(() => {
-            return mongoose.connection.close();
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-
 });
